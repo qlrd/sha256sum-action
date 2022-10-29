@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  test-sha256sum-action:
+    runs-on: ubuntu-latest
+    name: A job to test the sha256sum hashing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Sha256Sum Action 
+        uses: ./ # Uses an action in the root directory
+        id: sha256sum-action
+        with:
+          path-to-file: './test-data/test.txt'
+
+      - name: verify hash
+        run: cat ${{ steps.sha256sum-action.outputs.hash-file }}
+     
