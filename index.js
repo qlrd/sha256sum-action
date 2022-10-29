@@ -3,9 +3,9 @@ const github = require('@actions/github');
 const fs = require('fs')
 const path = require('path')
 const hasha = require('hasha')
-const utils = require('utils')
+const util = require('util')
 
-const writeFileAsync = utils.promisify(fs.writeFile)
+const writeFileAsync = util.promisify(fs.writeFile)
 
 const pathToFile = core.getInput('path-to-file');
 const hashPathFile = `${pathToFile}.sha256sum.txt`;
