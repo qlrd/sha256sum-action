@@ -19,7 +19,7 @@ hasha.fromFile(__path__, { algorithm: 'sha256' })
     console.log(`creating ${hashPathFile}`);
     return writeFileAsync(__hashpath__, content, 'utf8');
   }).then(function() {
-    core.setOuput('hash-file', hashPathFile);
+    core.setOutput('hash-file', hashPathFile);
   })
   .catch(function(err) {
     core.setFailed(err.message);
