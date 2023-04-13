@@ -30,10 +30,12 @@ jobs:
 
       - name: Sha256Sum Action
         uses: qlrd/sha256sum-action@v1.0.0
-        id: sha256sum-action
+        id: hashing
+        working-directory: ./test-data
         with:
-          path-to-file: './test-data/test.txt'
+          file: test.txt
+          ext: 'sha256sum.txt'
 
       - name: Verify Hash
-        run: cat ${{ steps.sha256sum-action.outputs.hash-file }} 
+        run: cat ${{ steps.hashing.outputs.hash-file }} 
 ```

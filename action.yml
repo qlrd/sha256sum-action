@@ -2,14 +2,18 @@ name: 'Sha256SumAction'
 description: 'Get file as input and prepare its sha256sum.txt file'
 
 inputs:
-  path-to-file:
-    description: 'path to release file'
+  file:
+    description: 'the file that will be hashed'
     required: true
+
+  ext:
+    description: 'the sha256sum extension for the output file (ex: sha256sum.txt)'
+    default: 'sha256sum.txt'
 
 outputs:
   hash-file:
-    description: 'path to created release-hash  file'
+    description: 'path to created release-hash file'
 
 runs:
-  using: 'node16'
+  using: 'node18'
   main: 'index.js'

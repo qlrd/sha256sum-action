@@ -10,10 +10,11 @@ jobs:
 
       - name: Sha256Sum Action 
         uses: ./ # Uses an action in the root directory
-        id: sha256sum-action
+        id: hashing
+        working-directory: ./test-data
         with:
-          path-to-file: './test-data/test.txt'
+          path-to-file: test.txt
 
       - name: verify hash
-        run: cat ${{ steps.sha256sum-action.outputs.hash-file }}
+        run: cat ${{ steps.hashing.outputs.hash-file }}
      
