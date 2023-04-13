@@ -19,5 +19,5 @@ outputs:
     description: 'path to created release-hash file'
 
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'index.js'
