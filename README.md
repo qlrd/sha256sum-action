@@ -3,9 +3,17 @@
 This action Get a gile as input and prepare its sha256sum.txt file.
 ## Inputs
 
-## `path-to-file`
+## `working-directory`
 
-**Required** The path to the file in your repo to be hashed.
+**Required** The file's working directory that will be hashed.
+
+## `file`
+
+**Required** The filenamein your repo to be hashed.
+
+## `ext`
+
+The extension of sha256sum file. You can customize to `sha256sum.txt`, `sha256.txt` or anything you want
 
 ## Outputs
 
