@@ -11,7 +11,6 @@ jobs:
       - name: Sha256Sum Action 
         uses: ./ # Uses an action in the root directory
         id: hashing
-        working-directory:
         with:
           working-directory: ./test-data
           file: test.txt
