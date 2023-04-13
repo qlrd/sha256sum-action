@@ -2,6 +2,10 @@ name: 'Sha256SumAction'
 description: 'Get file as input and prepare its sha256sum.txt file'
 
 inputs:
+  working-directory:
+    description: 'the working directory where that file is located'
+    requirede: true
+
   file:
     description: 'the file that will be hashed'
     required: true

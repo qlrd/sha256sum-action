@@ -7,19 +7,22 @@ const util = require('util')
 
 const writeFileAsync = util.promisify(fs.writeFile)
 
+
+const dir = core.getInput('working-directory');
 const file = core.getInput('file');
 const ext = core.getInput('ext');
 
-const hashPathFile = `${file}.${ext}`;
 
-const __path__ = path.join(process.env.GITHUB_WORKSPACE, pathToFile);
-const __hashpath__ = path.join(process.env.GITHUB_WORKSPACE, hashPathFile);
+const __filepath__ = path.join(process.env.GITHUB_WORKSPACE, dir, file);
+const __hashpath__ = path.join(process.env.GITHUB_WORKSPACE, dir, `${file}.${ext}`);
 
-hasha.fromFile(__path__, { algorithm: 'sha256' })
+console.log(`reading ${__filepath__}`)
+hasha.fromFile(__filepath__, { algorithm: 'sha256' })
   .then(function(hash) {
+    console.log(`${__filepath__} hashed`)
     const content = `${hash} ${file}`;
-    console.log(`creating ${__hashpath__} with the following content: `);
-    console.log(`  ${content}`);
+    console.log(`content: ${content}`);
+    console.log(`creating ${__hashpath__}`)
     return writeFileAsync(__hashpath__, content, 'utf8');
   }).then(function() {
     core.setOutput('hash-file', hashPathFile);

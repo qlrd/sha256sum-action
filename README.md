@@ -31,8 +31,8 @@ jobs:
       - name: Sha256Sum Action
         uses: qlrd/sha256sum-action@v1.0.0
         id: hashing
-        working-directory: ./test-data
         with:
+          working-directory: ./test-data
           file: test.txt
           ext: 'sha256sum.txt'
 
