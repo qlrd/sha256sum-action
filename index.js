@@ -16,13 +16,17 @@ const ext = core.getInput('ext');
 const __filepath__ = path.join(process.env.GITHUB_WORKSPACE, dir, file);
 const __hashpath__ = path.join(process.env.GITHUB_WORKSPACE, dir, `${file}.${ext}`);
 
-console.log(`reading ${__filepath__}`)
+function colorize(action, msg) {
+  return `\x1b[32m${action}\x1b[0m ${msg}`
+}
+
+console.log(colorize('reading:', __filepath__))
 hasha.fromFile(__filepath__, { algorithm: 'sha256' })
   .then(function(hash) {
-    console.log(`${__filepath__} hashed`)
+    console.log(colorize('hashed:', __filepath__))
     const content = `${hash} ${file}`;
-    console.log(`content: ${content}`);
-    console.log(`creating ${__hashpath__}`)
+    console.log(colorize('content:', content));
+    console.log(colorize('created:', __hashpath__));
     return writeFileAsync(__hashpath__, content, 'utf8');
   }).then(function() {
     core.setOutput('hash-file', hashPathFile);
