@@ -7,14 +7,12 @@ const util = require('util')
 
 const writeFileAsync = util.promisify(fs.writeFile)
 
-
 const dir = core.getInput('working-directory');
 const file = core.getInput('file');
 const ext = core.getInput('ext');
 
-
-const __filepath__ = path.join(process.env.GITHUB_WORKSPACE, dir, file);
-const __hashpath__ = path.join(process.env.GITHUB_WORKSPACE, dir, `${file}.${ext}`);
+const __filepath__ = path.join(dir, file);
+const __hashpath__ = path.join(dir, `${file}.${ext}`);
 
 function colorize(action, msg) {
   return `\x1b[32m${action}\x1b[0m ${msg}`
